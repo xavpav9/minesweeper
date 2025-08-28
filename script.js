@@ -26,24 +26,38 @@ submitBtn.addEventListener("click", evt => {
 gameBoard.addEventListener("click", evt => {
   if ([...evt.target.classList].includes("square")) {
     if (evt.button === 0) {
-      const rows = [...gameBoard.children];
-      const coords = getCoordinates(evt.target);
-      const currentSquare = rows[coords.y].children[coords.x];
-      if ([...rows[coords.y].children[coords.x].classList].includes("mine")) {
-        console.log("I am a mine");
-        return;
-      };
-
-      let mineCount = 0;
-      for (let x = coords.x - 1; x <= coords.x + 1; ++x) {
-        for (let y = coords.y - 1; y <= coords.y + 1; ++y) {
-          if (x >= 0 && x < currentSize && y >= 0 && y < currentSize && [...rows[y].children[x].classList].includes("mine")) mineCount++;
-        };
-      };
-      currentSquare.querySelector("span").textContent = mineCount;
+      checkSquare(evt.target);
     };
   };
 });
+
+function checkSquare(currentSquare) {
+  const rows = [...gameBoard.children];
+  const coords = getCoordinates(currentSquare);
+  if ([...rows[coords.y].children[coords.x].classList].includes("mine")) {
+    console.log("I am a mine");
+    return;
+  };
+
+  let mineCount = 0;
+  for (let x = coords.x - 1; x <= coords.x + 1; ++x) {
+    for (let y = coords.y - 1; y <= coords.y + 1; ++y) {
+      if (x >= 0 && x < currentSize && y >= 0 && y < currentSize && [...rows[y].children[x].classList].includes("mine")) mineCount++;
+    };
+  };
+  currentSquare.classList.add("revealed");
+  if (mineCount !== 0) {
+    currentSquare.querySelector("span").textContent = mineCount;
+  } else {
+    for (let x = coords.x - 1; x <= coords.x + 1; ++x) {
+      for (let y = coords.y - 1; y <= coords.y + 1; ++y) {
+        if (x >= 0 && x < currentSize && y >= 0 && y < currentSize && ![...rows[y].children[x].classList].includes("revealed")) {
+          checkSquare(rows[y].children[x]);
+        };
+      };
+    };
+  };
+};
 
 function getCoordinates(square) {
   const siblings = [...square.parentNode.children];

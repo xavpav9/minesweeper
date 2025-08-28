@@ -1,0 +1,22 @@
+*, *::after, *::before {
+  margin: 0px;
+  padding: 0px;
+  line-height: 1.5;
+}
+
+html {
+  font-family: "Courier", monospace;
+}
+
+html * {
+  font-family: inherit;
+}
+
+h1 {
+  font-family: system-ui, Roboto, sans-serif;
+  text-align: center;
+}
+
+body {
+  background-color: wheat;
+}

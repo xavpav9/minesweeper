@@ -2,6 +2,7 @@ const gameBoard = document.querySelector(".gameboard");
 const submitBtn = document.querySelector(".submitBtn");
 const sizeInput = document.querySelector("#size");
 const minesInput = document.querySelector("#mines");
+let currentSize = 0;
 
 submitBtn.addEventListener("click", evt => {
   [...gameBoard.children].forEach(child => child.remove());
@@ -22,6 +23,36 @@ submitBtn.addEventListener("click", evt => {
   });
 });
 
+gameBoard.addEventListener("click", evt => {
+  if ([...evt.target.classList].includes("square")) {
+    if (evt.button === 0) {
+      const rows = [...gameBoard.children];
+      const coords = getCoordinates(evt.target);
+      const currentSquare = rows[coords.y].children[coords.x];
+      if ([...rows[coords.y].children[coords.x].classList].includes("mine")) {
+        console.log("I am a mine");
+        return;
+      };
+
+      let mineCount = 0;
+      for (let x = coords.x - 1; x <= coords.x + 1; ++x) {
+        for (let y = coords.y - 1; y <= coords.y + 1; ++y) {
+          if (x >= 0 && x < currentSize && y >= 0 && y < currentSize && [...rows[y].children[x].classList].includes("mine")) mineCount++;
+        };
+      };
+      currentSquare.querySelector("span").textContent = mineCount;
+    };
+  };
+});
+
+function getCoordinates(square) {
+  const siblings = [...square.parentNode.children];
+  const row = square.parentNode;
+  const rows = [...square.parentNode.parentNode.children];
+
+  return {x: siblings.indexOf(square), y: rows.indexOf(row)}; // from top right
+};
+
 function validateInputs(evt) {
   submitBtn.removeAttribute("disabled");
   const size = +sizeInput.value;
@@ -34,6 +65,8 @@ function validateInputs(evt) {
 };
 
 function createGrid(size, mines) {
+  currentSize = size;
+  
   let counter = 0;
   const minePositions = [];
   let minesLeft = mines;
@@ -57,6 +90,9 @@ function createGrid(size, mines) {
         square.classList.add("mine");
         minePositions.pop();
       }
+      
+      const span = document.createElement("span");
+      square.appendChild(span);
       row.appendChild(square);
 
       counter++;

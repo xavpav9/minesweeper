@@ -28,18 +28,27 @@ submitBtn.addEventListener("click", evt => {
 
 gameBoard.addEventListener("mouseup", evt => {
   if (mousedownOnGameBoard) {
+
     if ([...evt.target.classList].includes("square") || evt.target.tagName === "SPAN") {
-      if (evt.button === 0) {
-        checkSquare(evt.target);
+      let span;
+      let square;
+      if ([...evt.target.classList].includes("square")) {
+        span = evt.target.querySelector("span");
+        square = evt.target;
+      } else if (evt.target.tagName === "SPAN") {
+        span = evt.target;
+        square = evt.target.parentNode;
+      };
+
+      if (evt.button === 0 && span.textContent !== "🚩") {
+        checkSquare(square);
         if (checkWin()) showWinScreen();
       } else if (evt.button === 2) {
-        const span = evt.target.querySelector("span") ?? evt.target;
-        console.log(span);
         span.textContent = (span.textContent === "") ? "🚩" : "";
       };
     };
-  };
   mousedownOnGameBoard = false;
+  };
 });
 
 gameBoard.addEventListener("mousedown", evt => {

@@ -197,6 +197,8 @@ form {
 
 .start {
 
+  background-color: #80ff80;
+
   &::after {
     content: "Start";
     color: black;

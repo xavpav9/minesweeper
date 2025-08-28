@@ -42,7 +42,7 @@ gameBoard.addEventListener("mouseup", evt => {
 
       if (evt.button === 0 && span.textContent !== "🚩") {
         checkSquare(square);
-        if (checkWin()) showWinScreen();
+        if (checkWin()) showEndScreen("win");
       } else if (evt.button === 2) {
         span.textContent = (span.textContent === "") ? "🚩" : "";
       };
@@ -78,7 +78,7 @@ function checkSquare(currentSquare) {
   const rows = [...gameBoard.children];
   const coords = getCoordinates(currentSquare);
   if ([...rows[coords.y].children[coords.x].classList].includes("mine")) {
-    showLoseScreen();
+    showEndScreen("lose");
     return;
   };
 
@@ -158,18 +158,14 @@ function createGrid(size, mines) {
   };
 };
 
-function showLoseScreen() {
-  loseScreen.style.display = "flex";
+function showEndScreen(screenType = "win") {
+  let screen;
+  if (screenType === "lose") screen = loseScreen;
+  else if (screenType === "win") screen = winScreen;
+  screen.style.display = "flex";
   const gameBoardCopy = gameBoard.cloneNode(true);
   gameBoardCopy.style.setProperty("--board-size", "calc(clamp(20vh, 30vw, 40vh) - 24px - 40px)");
-  loseScreen.querySelector(".content").appendChild(gameBoardCopy);
-};
-
-function showWinScreen() {
-  winScreen.style.display = "flex";
-  const gameBoardCopy = gameBoard.cloneNode(true);
-  gameBoardCopy.style.setProperty("--board-size", "calc(clamp(20vh, 30vw, 40vh) - 24px - 40px)");
-  winScreen.querySelector(".content").appendChild(gameBoardCopy);
+  screen.querySelector(".content").appendChild(gameBoardCopy);
 };
 
 function checkWin() {

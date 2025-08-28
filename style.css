@@ -131,11 +131,7 @@ body {
 }
 
 .mine {
-  background-color: red;
 
-  &:hover {
-    background-color: #ee0000;
-  }
 }
 
 .revealed {

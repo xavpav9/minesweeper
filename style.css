@@ -28,7 +28,7 @@ body {
 
 .game {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 
@@ -37,6 +37,33 @@ body {
 
 
 .gameboard {
+  --board-size: 40vw;
+  --squares: 1;
+  --square-size: calc(var(--board-size) / var(--squares));
+
+  width: var(--board-size);
+  height: var(--board-size);
+  padding: 10px;
+
+  background-color: grey;
+  border: 2px solid black;
+  border-radius: 2px;
+}
+
+.row {
+  display: flex;
+}
+
+.square {
+  box-sizing: border-box;
+  background-color: lightgrey;
+  border: thin solid black;
+  width: var(--square-size);
+  height: var(--square-size);
+
+  &:hover {
+    background-color: #c3c3c3;
+  }
 }
 
 form {

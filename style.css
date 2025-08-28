@@ -55,12 +55,23 @@ body {
   display: flex;
 }
 
+.row:first-child .square {
+  border-top: 2px solid black;
+}
+.row:last-child .square {
+  border-bottom: 2px solid black;
+}
+
 .square {
   box-sizing: border-box;
   background-color: lightgrey;
-  border: thin solid black;
   width: var(--square-size);
   height: var(--square-size);
+
+  border-right: thin solid black;
+  border-bottom: thin solid black;
+  &:first-child { border-left: 2px solid black; }
+  &:last-child { border-right: 2px solid black; }
 
   &:hover {
     background-color: #c3c3c3;
@@ -69,6 +80,10 @@ body {
 
 .mine {
   background-color: red;
+
+  &:hover {
+    background-color: #ee0000;
+  }
 }
 
 form {

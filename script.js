@@ -4,7 +4,6 @@ const sizeInput = document.querySelector("#size");
 const minesInput = document.querySelector("#mines");
 const winScreen = document.querySelector(".win-screen");
 const loseScreen = document.querySelector(".lose-screen");
-const playAgainBtn = document.querySelector(".play-again");
 let currentSize = 0;
 
 submitBtn.addEventListener("click", evt => {
@@ -30,22 +29,24 @@ gameBoard.addEventListener("click", evt => {
   if ([...evt.target.classList].includes("square")) {
     if (evt.button === 0) {
       checkSquare(evt.target);
-      checkWin();
+      if (checkWin()) showWinScreen();
     };
   };
 });
 
-playAgainBtn.addEventListener("click", evt => {
-  loseScreen.style.display = "none";
-  loseScreen.querySelector(".content > *:last-child").remove();
-  submitBtn.dispatchEvent(new Event("click"));
+[winScreen, loseScreen].forEach(screen => {
+  const btn = screen.querySelector(".play-again"); 
+  btn.addEventListener("click", evt => {
+    screen.style.display = "none";
+    screen.querySelector(".gameboard:last-child").remove();
+    submitBtn.dispatchEvent(new Event("click"));
+  });
 });
 
 function checkSquare(currentSquare) {
   const rows = [...gameBoard.children];
   const coords = getCoordinates(currentSquare);
   if ([...rows[coords.y].children[coords.x].classList].includes("mine")) {
-    console.log("I am a mine");
     showLoseScreen();
     return;
   };
@@ -133,5 +134,20 @@ function showLoseScreen() {
   loseScreen.querySelector(".content").appendChild(gameBoardCopy);
 };
 
-function showWinScreen() {};
-function checkWin() {};
+function showWinScreen() {
+  winScreen.style.display = "flex";
+  const gameBoardCopy = gameBoard.cloneNode(true);
+  gameBoardCopy.style.setProperty("--board-size", "calc(clamp(20vh, 30vw, 40vh) - 24px - 40px)");
+  winScreen.querySelector(".content").appendChild(gameBoardCopy);
+};
+
+function checkWin() {
+  for (row of gameBoard.children) {
+    for (square of row.children) {
+      if (!([...square.classList].includes("mine") || [...square.classList].includes("revealed"))) {
+        return false;
+      };
+    };
+  };
+  return true;
+};

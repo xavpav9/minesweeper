@@ -5,6 +5,7 @@ const minesInput = document.querySelector("#mines");
 const winScreen = document.querySelector(".win-screen");
 const loseScreen = document.querySelector(".lose-screen");
 let currentSize = 0;
+let mousedownOnGameBoard = false;
 
 submitBtn.addEventListener("click", evt => {
   [...gameBoard.children].forEach(child => child.remove());
@@ -25,13 +26,34 @@ submitBtn.addEventListener("click", evt => {
   });
 });
 
-gameBoard.addEventListener("click", evt => {
-  if ([...evt.target.classList].includes("square")) {
-    if (evt.button === 0) {
-      checkSquare(evt.target);
-      if (checkWin()) showWinScreen();
+gameBoard.addEventListener("mouseup", evt => {
+  if (mousedownOnGameBoard) {
+    if ([...evt.target.classList].includes("square") || evt.target.tagName === "SPAN") {
+      if (evt.button === 0) {
+        checkSquare(evt.target);
+        if (checkWin()) showWinScreen();
+      } else if (evt.button === 2) {
+        const span = evt.target.querySelector("span") ?? evt.target;
+        console.log(span);
+        span.textContent = (span.textContent === "") ? "🚩" : "";
+      };
     };
   };
+  mousedownOnGameBoard = false;
+});
+
+gameBoard.addEventListener("mousedown", evt => {
+  mousedownOnGameBoard = true;
+});
+
+window.addEventListener("mouseup", evt => {
+  if (![...evt.target.classList].includes("square")) {
+    mousedownOnGameBoard = false;
+  };
+});
+
+gameBoard.addEventListener("contextmenu", evt => {
+    evt.preventDefault();
 });
 
 [winScreen, loseScreen].forEach(screen => {

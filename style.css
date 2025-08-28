@@ -126,7 +126,7 @@ body {
   align-items: center;
   & > span {
     font-weight: 700;
-    font-size: var(--square-size);
+    font-size: calc(var(--square-size) * 3 / 4);
   }
 }
 
@@ -182,7 +182,7 @@ form {
   font-weight: 700;
 }
 
-.start, .win-screen button, .lose-screen button {
+.win-screen button, .lose-screen button {
 
   background-color: #80ff80;
 
@@ -201,6 +201,15 @@ form {
     content: "Start";
     color: black;
   }
+
+  &:hover {
+    background-color: #70ee70;
+  }
+
+  &:active {
+    background-color: #60dd60;
+  }
+
   &[disabled] {
     background-color: #eeffee;
     &::after {

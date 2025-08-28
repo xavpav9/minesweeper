@@ -4,6 +4,7 @@ const sizeInput = document.querySelector("#size");
 const minesInput = document.querySelector("#mines");
 const winScreen = document.querySelector(".win-screen");
 const loseScreen = document.querySelector(".lose-screen");
+const playAgainBtn = document.querySelector(".play-again");
 let currentSize = 0;
 
 submitBtn.addEventListener("click", evt => {
@@ -32,6 +33,12 @@ gameBoard.addEventListener("click", evt => {
       checkWin();
     };
   };
+});
+
+playAgainBtn.addEventListener("click", evt => {
+  loseScreen.style.display = "none";
+  loseScreen.querySelector(".content > *:last-child").remove();
+  submitBtn.dispatchEvent(new Event("click"));
 });
 
 function checkSquare(currentSquare) {

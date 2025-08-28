@@ -15,8 +15,87 @@ html * {
 h1 {
   font-family: system-ui, Roboto, sans-serif;
   text-align: center;
+  margin-bottom: 20px;
 }
 
 body {
   background-color: wheat;
+}
+
+
+
+
+
+.game {
+  display: flex;
+  justify-content: center;
+}
+
+
+.options {
+}
+
+
+.gameboard {
+}
+
+form {
+  font-family: "Times New Roman", serif;
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  input {
+    font-family: Roboto, sans-serif;
+  }
+
+  & > div:last-of-type { /* submit button */
+    align-self: center;
+  }
+
+  label {
+    display: inline-block;
+    width: 60px;
+  }
+}
+
+.submitBtn {
+  border: thin solid black;
+  border-radius: 3px;
+  padding: 2px 4px;
+  width: 50px;
+}
+
+
+.start {
+  background-color: #80ff80;
+
+  &::after {
+    content: "Start";
+  }
+
+  &:hover {
+    background-color: #70ee70;
+  }
+
+  &:active {
+    background-color: #60dd60;
+  }
+}
+
+.reset {
+  background-color: #ff0000;
+
+  &::after {
+    content: "Reset";
+  }
+
+  &:hover {
+    background-color: #ee0000;
+  }
+
+  &:active {
+    background-color: #cc0000;
+  }
 }

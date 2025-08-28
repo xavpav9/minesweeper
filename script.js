@@ -12,6 +12,18 @@ submitBtn.addEventListener("click", evt => {
 
 
 function createGrid(size, mines) {
+  let counter = 0;
+  const minePositions = [];
+  let minesLeft = mines;
+  while (minesLeft > 0) {
+    const pos = Math.floor(Math.random() * Math.pow(size, 2));
+    if (!minePositions.includes(pos)) {
+      minePositions.push(pos);
+      minesLeft--;
+    };
+  };
+  minePositions.sort((a,b) => b-a);
+
   gameBoard.style.setProperty("--squares", size);
   for (let o = 0; o < size; ++o) {
     const row = document.createElement("div");
@@ -19,7 +31,13 @@ function createGrid(size, mines) {
     for (let i = 0; i < size; ++i) {
       const square = document.createElement("div");
       square.classList.add("square");
+      if (minePositions.at(-1) === counter) {
+        square.classList.add("mine");
+        minePositions.pop();
+      }
       row.appendChild(square);
+
+      counter++;
     };
     gameBoard.appendChild(row);
   };

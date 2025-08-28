@@ -20,11 +20,52 @@ h1 {
 
 body {
   background-color: wheat;
+  padding: 5px;
 }
 
 
 
 
+
+.win-screen, .lose-screen {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  top: 0px;
+  left: 0px;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  .content {
+    position: static;
+    background-color: lightblue;
+    width: clamp(40vh, 60vw, 600px);
+    height: clamp(20vh, 30vw, 40vh);
+    border-radius: 20px;
+    border: 2px solid black;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    .left {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      height: 80%;
+      gap: 20px;
+      font-size: max(0.5rem, 2vw);
+
+      h3 {
+        margin-bottom: auto;
+        font-size: 1.5em;
+      }
+    }
+  }
+}
 
 .game {
   display: flex;
@@ -125,7 +166,7 @@ form {
   }
 }
 
-.submitBtn {
+.submitBtn, .win-screen button, .lose-screen button {
   border: thin solid black;
   border-radius: 3px;
   padding: 2px 4px;
@@ -136,14 +177,14 @@ form {
   }
 }
 
+.win-screen button, .lose-screen button {
+  width: auto;
+  font-weight: 700;
+}
 
-.start {
+.start, .win-screen button, .lose-screen button {
+
   background-color: #80ff80;
-
-  &::after {
-    content: "Start";
-    color: black;
-  }
 
   &:hover {
     background-color: #70ee70;
@@ -152,7 +193,14 @@ form {
   &:active {
     background-color: #60dd60;
   }
+}
 
+.start {
+
+  &::after {
+    content: "Start";
+    color: black;
+  }
   &[disabled] {
     background-color: #eeffee;
     &::after {

@@ -2,6 +2,8 @@ const gameBoard = document.querySelector(".gameboard");
 const submitBtn = document.querySelector(".submitBtn");
 const sizeInput = document.querySelector("#size");
 const minesInput = document.querySelector("#mines");
+const winScreen = document.querySelector(".win-screen");
+const loseScreen = document.querySelector(".lose-screen");
 let currentSize = 0;
 
 submitBtn.addEventListener("click", evt => {
@@ -27,6 +29,7 @@ gameBoard.addEventListener("click", evt => {
   if ([...evt.target.classList].includes("square")) {
     if (evt.button === 0) {
       checkSquare(evt.target);
+      checkWin();
     };
   };
 });
@@ -36,6 +39,7 @@ function checkSquare(currentSquare) {
   const coords = getCoordinates(currentSquare);
   if ([...rows[coords.y].children[coords.x].classList].includes("mine")) {
     console.log("I am a mine");
+    showLoseScreen();
     return;
   };
 
@@ -114,3 +118,13 @@ function createGrid(size, mines) {
     gameBoard.appendChild(row);
   };
 };
+
+function showLoseScreen() {
+  loseScreen.style.display = "flex";
+  const gameBoardCopy = gameBoard.cloneNode(true);
+  gameBoardCopy.style.setProperty("--board-size", "calc(clamp(20vh, 30vw, 40vh) - 24px - 40px)");
+  loseScreen.querySelector(".content").appendChild(gameBoardCopy);
+};
+
+function showWinScreen() {};
+function checkWin() {};

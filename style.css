@@ -34,6 +34,9 @@ body {
 
 
 .options {
+  & > *:first-child {
+    margin-bottom: 20px;
+  }
 }
 
 

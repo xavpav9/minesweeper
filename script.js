@@ -5,7 +5,11 @@ const minesInput = document.querySelector("#mines");
 
 submitBtn.addEventListener("click", evt => {
   [...gameBoard.children].forEach(child => child.remove());
-  createGrid(+sizeInput.value, +minesInput.value);
+
+  if ([...submitBtn.classList].includes("start")) createGrid(+sizeInput.value, +minesInput.value);
+
+  submitBtn.classList.toggle("start");
+  submitBtn.classList.toggle("reset");
 });
 
 [sizeInput, minesInput].forEach(input => {

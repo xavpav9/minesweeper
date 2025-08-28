@@ -29,6 +29,7 @@ body {
 .game {
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 
@@ -37,7 +38,7 @@ body {
 
 
 .gameboard {
-  --board-size: 40vw;
+  --board-size: max(200px, 40vw);
   --squares: 1;
   --square-size: calc(var(--board-size) / var(--squares));
 

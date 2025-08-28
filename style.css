@@ -112,6 +112,10 @@ form {
   border-radius: 3px;
   padding: 2px 4px;
   width: 50px;
+  
+  &:focus {
+    outline: thin solid lightblue;
+  }
 }
 
 

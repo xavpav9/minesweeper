@@ -165,6 +165,10 @@ function showEndScreen(screenType = "win") {
   screen.style.display = "flex";
   const gameBoardCopy = gameBoard.cloneNode(true);
   gameBoardCopy.style.setProperty("--board-size", "calc(clamp(20vh, 30vw, 40vh) - 24px - 40px)");
+  gameBoardCopy.querySelectorAll(".mine").forEach(mineSquare => {
+    mineSquare.textContent = "💣";
+    mineSquare.style.backgroundColor = "pink";
+  });
   screen.querySelector(".content").appendChild(gameBoardCopy);
 };
 

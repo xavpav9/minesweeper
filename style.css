@@ -42,7 +42,7 @@ body {
   .content {
     position: static;
     background-color: lightblue;
-    width: clamp(40vh, 60vw, 600px);
+    width: max(40vh, 60vw);
     height: clamp(20vh, 30vw, 40vh);
     border-radius: 20px;
     border: 2px solid black;

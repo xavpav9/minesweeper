@@ -4,10 +4,21 @@ const sizeInput = document.querySelector("#size");
 const minesInput = document.querySelector("#mines");
 
 submitBtn.addEventListener("click", evt => {
-  // to-do: validation 
-
   [...gameBoard.children].forEach(child => child.remove());
   createGrid(+sizeInput.value, +minesInput.value);
+});
+
+[sizeInput, minesInput].forEach(input => {
+  ["click", "input"].forEach(event => {
+    input.addEventListener(event, evt => {
+      submitBtn.removeAttribute("disabled");
+      const size = +sizeInput.value;
+      const mines = +minesInput.value;
+      if (size < 5 || mines < 5 || size > 40 || mines >= Math.pow(size, 2)) {
+        submitBtn.setAttribute("disabled", "disabled");
+      };
+    });
+  });
 });
 
 

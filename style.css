@@ -105,6 +105,7 @@ form {
 
   &::after {
     content: "Start";
+    color: black;
   }
 
   &:hover {
@@ -114,6 +115,13 @@ form {
   &:active {
     background-color: #60dd60;
   }
+
+  &[disabled] {
+    background-color: #eeffee;
+    &::after {
+      content: "Invalid";
+    }
+  }
 }
 
 .reset {
@@ -121,6 +129,7 @@ form {
 
   &::after {
     content: "Reset";
+    color: black;
   }
 
   &:hover {

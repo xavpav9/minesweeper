@@ -167,10 +167,6 @@ form {
     display: inline-block;
     width: 60px;
   }
-
-  select {
-    position: relative;
-  }
 }
 
 .submitBtn, .win-screen button, .lose-screen button {

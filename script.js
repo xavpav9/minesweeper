@@ -50,8 +50,10 @@ flagMineToggleBtn.addEventListener("click", evt => {
 
 window.addEventListener("keydown", evt=> {
   validateInputs();
-  if (evt.key === "Enter" && !submitBtn.hasAttribute("disabled")) {
-    submitBtn.dispatchEvent(new Event("click"));
+  if (evt.key === "Enter") {
+    if (winScreen.style.display === "flex") winScreen.querySelector("button").dispatchEvent(new Event("click"));
+    else if (loseScreen.style.display === "flex") loseScreen.querySelector("button").dispatchEvent(new Event("click"));
+    else if (evt.key === "Enter" && !submitBtn.hasAttribute("disabled")) submitBtn.dispatchEvent(new Event("click"));
   };
 });
 
@@ -132,23 +134,23 @@ levelSelect.addEventListener("change", evt => {
       break;
     case "easy":
       disable();
-      sizeInput.value = 5;
+      sizeInput.value = 6;
       minesInput.value = 5;
       break;
     case "medium":
       disable();
-      sizeInput.value = 10;
+      sizeInput.value = 12;
       minesInput.value = 20;
       break;
     case "hard":
       disable();
-      sizeInput.value = 20;
-      minesInput.value = 40;
+      sizeInput.value = 18;
+      minesInput.value = 50;
       break;
     case "impossible":
       disable();
       sizeInput.value = 40;
-      minesInput.value = 150;
+      minesInput.value = 125;
       break;
   };
   validateInputs();

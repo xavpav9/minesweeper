@@ -32,20 +32,20 @@
           <div>
             <label for="levels">Level: </label>
             <select id="levels">
-              <option value="Custom">Custom</option>
-              <option value="Easy">Easy</option>
-              <option value="Medium">Hard</option>
-              <option value="Hard">Hard</option>
-              <option value="Impossible">Impossible</option>
+              <option selected value="custom">Custom</option>
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+              <option value="impossible">Impossible</option>
             </select>
           </div>
           <div>
             <label for="mines">Mines: </label>
-            <input disabled id="mines" min="5" placeholder="5+" type="number"/>
+            <input id="mines" min="5" placeholder="5+" type="number"/>
           </div>
           <div>
             <label for="size">Size: </label>
-            <input disabled id="size" min="5" placeholder="5 - 40" type="number"/>
+            <input id="size" min="5" placeholder="5 - 40" type="number"/>
           </div>
           <div>
             <button disabled type="button" class="submitBtn start"></button>

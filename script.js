@@ -4,6 +4,7 @@ const sizeInput = document.querySelector("#size");
 const minesInput = document.querySelector("#mines");
 const winScreen = document.querySelector(".win-screen");
 const loseScreen = document.querySelector(".lose-screen");
+const levelSelect = document.querySelector("#levels");
 let currentSize = 0;
 let mousedownOnGameBoard = false;
 
@@ -21,6 +22,7 @@ submitBtn.addEventListener("click", evt => {
 [sizeInput, minesInput].forEach(input => {
   ["click", "input"].forEach(event => {
     input.addEventListener(event, evt => {
+    console.log("hi");
       validateInputs(evt);
     });
   });
@@ -72,6 +74,40 @@ gameBoard.addEventListener("contextmenu", evt => {
     screen.querySelector(".gameboard:last-child").remove();
     submitBtn.dispatchEvent(new Event("click"));
   });
+});
+
+levelSelect.addEventListener("change", evt => {
+  function disable() {
+    sizeInput.setAttribute("disabled", "disabled");
+    minesInput.setAttribute("disabled", "disabled");
+  }
+  switch (evt.target.value) {
+    case "custom":
+      sizeInput.removeAttribute("disabled");
+      minesInput.removeAttribute("disabled");
+      break;
+    case "easy":
+      disable();
+      sizeInput.value = 5;
+      minesInput.value = 5;
+      break;
+    case "medium":
+      disable();
+      sizeInput.value = 10;
+      minesInput.value = 20;
+      break;
+    case "hard":
+      disable();
+      sizeInput.value = 20;
+      minesInput.value = 40;
+      break;
+    case "impossible":
+      disable();
+      sizeInput.value = 40;
+      minesInput.value = 150;
+      break;
+  };
+  validateInputs(evt);
 });
 
 function checkSquare(currentSquare) {

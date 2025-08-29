@@ -162,7 +162,9 @@ function showEndScreen(screenType = "win") {
   let screen;
   if (screenType === "lose") screen = loseScreen;
   else if (screenType === "win") screen = winScreen;
+
   screen.style.display = "flex";
+
   const gameBoardCopy = gameBoard.cloneNode(true);
   gameBoardCopy.style.setProperty("--board-size", "calc(clamp(20vh, 30vw, 40vh) - 24px - 40px)");
   gameBoardCopy.querySelectorAll(".mine").forEach(mineSquare => {

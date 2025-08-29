@@ -292,12 +292,13 @@ form {
   .win-screen, .lose-screen {
     .content {
       width: 60vw;
-      height: 70vh;
+      height: 68vh;
+      padding: 2vh;
       border-radius: 20px;
       border: 2px solid black;
 
       flex-direction: column;
-      justify-content: space-evenly;
+      justify-content: space-between;
       gap: 20px;
 
       .left {

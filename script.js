@@ -16,16 +16,22 @@ submitBtn.addEventListener("click", evt => {
   submitBtn.classList.toggle("start");
   submitBtn.classList.toggle("reset");
 
-  validateInputs(evt);
+  validateInputs();
 });
 
 [sizeInput, minesInput].forEach(input => {
   ["click", "input"].forEach(event => {
     input.addEventListener(event, evt => {
-    console.log("hi");
-      validateInputs(evt);
+      validateInputs();
     });
   });
+});
+
+window.addEventListener("keydown", evt=> {
+  validateInputs();
+  if (evt.key === "Enter" && !submitBtn.hasAttribute("disabled")) {
+    submitBtn.dispatchEvent(new Event("click"));
+  };
 });
 
 gameBoard.addEventListener("mouseup", evt => {
@@ -107,7 +113,7 @@ levelSelect.addEventListener("change", evt => {
       minesInput.value = 150;
       break;
   };
-  validateInputs(evt);
+  validateInputs();
 });
 
 function checkSquare(currentSquare) {
@@ -146,14 +152,12 @@ function getCoordinates(square) {
   return {x: siblings.indexOf(square), y: rows.indexOf(row)}; // from top right
 };
 
-function validateInputs(evt) {
+function validateInputs() {
   submitBtn.removeAttribute("disabled");
   const size = +sizeInput.value;
   const mines = +minesInput.value;
   if ((size < 5 || mines < 5 || size > 40 || mines >= Math.pow(size, 2)) && ([...submitBtn.classList].includes("start"))) {
     submitBtn.setAttribute("disabled", "disabled");
-  } else if (evt.key === "Enter" && [...submitBtn.classList].includes("start")) {
-    submitBtn.dispatchEvent(new Event("click"));
   };
 };
 

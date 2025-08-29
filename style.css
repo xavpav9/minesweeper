@@ -132,7 +132,7 @@ body {
 }
 
 .mine {
-
+  font-size: calc(var(--square-size) * 3 / 4);
 }
 
 .revealed {

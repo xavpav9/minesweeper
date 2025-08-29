@@ -76,6 +76,12 @@ gameBoard.addEventListener("contextmenu", evt => {
 [winScreen, loseScreen].forEach(screen => {
   const btn = screen.querySelector(".play-again"); 
   btn.addEventListener("click", evt => {
+    sizeInput.removeAttribute("disabled");
+    minesInput.removeAttribute("disabled");
+    submitBtn.removeAttribute("disabled");
+    levelSelect.removeAttribute("disabled");
+    levelSelect.dispatchEvent(new Event("change"));
+
     screen.style.display = "none";
     screen.querySelector(".gameboard:last-child").remove();
     submitBtn.dispatchEvent(new Event("click"));
@@ -199,6 +205,11 @@ function createGrid(size, mines) {
 };
 
 function showEndScreen(screenType = "win") {
+  sizeInput.setAttribute("disabled", "disabled");
+  minesInput.setAttribute("disabled", "disabled");
+  submitBtn.setAttribute("disabled", "disabled");
+  levelSelect.setAttribute("disabled", "disabled");
+
   let screen;
   if (screenType === "lose") screen = loseScreen;
   else if (screenType === "win") screen = winScreen;

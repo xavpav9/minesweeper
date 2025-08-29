@@ -145,21 +145,21 @@ levelSelect.addEventListener("change", evt => {
     case "medium":
       disable();
       sizeInput.value = 12;
-      minesInput.value = 20;
+      minesInput.value = 25;
       evt.target.style.backgroundColor = "orange";
       evt.target.style.color = "black";
       break;
     case "hard":
       disable();
       sizeInput.value = 18;
-      minesInput.value = 50;
+      minesInput.value = 75;
       evt.target.style.backgroundColor = "red";
       evt.target.style.color = "black";
       break;
     case "impossible":
       disable();
       sizeInput.value = 40;
-      minesInput.value = 125;
+      minesInput.value = 250;
       evt.target.style.backgroundColor = "darkred";
       evt.target.style.color = "white";
       break;

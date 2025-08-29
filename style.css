@@ -169,6 +169,10 @@ form {
     border-radius: 2px;
   }
 
+  select {
+    background-color: lightgrey;
+  }
+
   & > div:last-of-type { /* submit button */
     align-self: center;
   }
@@ -181,6 +185,14 @@ form {
   & > :last-child {
     margin-bottom: 20px;
   }
+}
+
+#mines {
+  background: linear-gradient(270deg, grey, 30%, white);
+}
+
+#size {
+  background: linear-gradient(270deg, grey, 30%, white);
 }
 
 .flag-count {

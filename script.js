@@ -254,11 +254,12 @@ function showEndScreen(screenType = "win") {
   screen.style.display = "flex";
 
   const gameBoardCopy = gameBoard.cloneNode(true);
-  gameBoardCopy.style.setProperty("--board-size", "calc(clamp(20vh, 30vw, 40vh) - 24px - 40px)");
+  gameBoardCopy.style.setProperty("--board-size", "calc(clamp(20vmin, 30vw, 40vmin) - 24px - 40px)");
   gameBoardCopy.querySelectorAll(".mine").forEach(mineSquare => {
     mineSquare.textContent = "💣";
     mineSquare.style.backgroundColor = "pink";
   });
+  gameBoardCopy.classList.add("gameboard-copy");
   screen.querySelector(".content").appendChild(gameBoardCopy);
 };
 

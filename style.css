@@ -45,10 +45,9 @@ body {
   align-items: center;
 
   .content {
-    position: static;
     background-color: lightblue;
-    width: max(40vh, 60vw);
-    height: clamp(20vh, 30vw, 40vh);
+    width: max(50vh, 60vw);
+    height: clamp(30vh, 30vw, 40vh);
     border-radius: 20px;
     border: 2px solid black;
 
@@ -229,13 +228,9 @@ form {
 }
 
 .win-screen button, .lose-screen button {
-  width: auto;
-  font-weight: 700;
-}
-
-.win-screen button, .lose-screen button {
 
   background-color: #80ff80;
+  font-weight: 700;
 
   &:hover {
     background-color: #70ee70;
@@ -290,6 +285,36 @@ form {
 
 @media screen and (max-width: 600px) {
   .gameboard {
-    --board-size: 80vw;
+    --board-size: 80vw !important;
+  }
+
+  .gameboard-copy {
+    --board-size: 40vw !important;
+  }
+
+  .win-screen, .lose-screen {
+    .content {
+      width: 60vw;
+      height: 70vh;
+      border-radius: 20px;
+      border: 2px solid black;
+
+      flex-direction: column;
+      justify-content: space-evenly;
+      gap: 20px;
+
+      .left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        gap: 20px;
+        font-size: 4vw;
+
+        h3 {
+          margin-bottom: 0px;
+        }
+      }
+    }
   }
 }

@@ -5,14 +5,18 @@ const minesInput = document.querySelector("#mines");
 const winScreen = document.querySelector(".win-screen");
 const loseScreen = document.querySelector(".lose-screen");
 const levelSelect = document.querySelector("#levels");
-const flagCountOutput = document.querySelector(".flag-count span:last-child");
+const flagMineOutput = document.querySelector(".flag-count span:last-child");
+const flagMineToggleBtn = document.querySelector(".flag-mine-toggle");
+const flagMineToggleOutput = document.querySelector(".flag-mine-toggle span:last-child");
+
 let currentSize = 0;
 let mousedownOnGameBoard = false;
 let flagCount = 0;
+let currentFlagMineToggle = "Mine";
 
 submitBtn.addEventListener("click", evt => {
   flagCount = 0;
-  flagCountOutput.textContent = flagCount;
+  flagMineOutput.textContent = flagCount;
 
   [...gameBoard.children].forEach(child => child.remove());
 
@@ -22,6 +26,18 @@ submitBtn.addEventListener("click", evt => {
   submitBtn.classList.toggle("reset");
 
   validateInputs();
+});
+
+flagMineToggleBtn.addEventListener("click", evt => {
+  if (currentFlagMineToggle === "Mine") {
+    currentFlagMineToggle = "Flag";
+    flagMineToggleOutput.textContent = currentFlagMineToggle;
+  } else {
+    currentFlagMineToggle = "Mine";
+    flagMineToggleOutput.textContent = currentFlagMineToggle;
+  };
+  flagMineToggleBtn.classList.toggle("flag-mode");
+  flagMineToggleBtn.classList.toggle("mine-mode");
 });
 
 [sizeInput, minesInput].forEach(input => {
@@ -52,18 +68,22 @@ gameBoard.addEventListener("mouseup", evt => {
         span = evt.target;
         square = evt.target.parentNode;
       };
+      
+      const flagClick = (currentFlagMineToggle === "Flag") ? 0 : 2;
+      const mineClick = (currentFlagMineToggle === "Mine") ? 0 : 2;
 
-      if (evt.button === 0 && span.textContent !== "🚩") {
+
+      if (evt.button === mineClick && span.textContent !== "🚩") {
         checkSquare(square);
         if (checkWin()) showEndScreen("win");
-      } else if (evt.button === 2 && ![...span.parentNode.classList].includes("revealed")) {
+      } else if (evt.button === flagClick && ![...span.parentNode.classList].includes("revealed")) {
         if (span.textContent === "") {
           span.textContent = "🚩";
-          flagCountOutput.textContent = ++flagCount;
+          flagMineOutput.textContent = ++flagCount;
 
         } else {
           span.textContent = "";
-          flagCountOutput.textContent = --flagCount;
+          flagMineOutput.textContent = --flagCount;
         };
       };
     };
@@ -223,7 +243,7 @@ function showEndScreen(screenType = "win") {
   levelSelect.setAttribute("disabled", "disabled");
 
   flagCount = 0;
-  flagCountOutput.textContent = flagCount;
+  flagMineOutput.textContent = flagCount;
 
   let screen;
   if (screenType === "lose") screen = loseScreen;

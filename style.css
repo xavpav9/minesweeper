@@ -83,10 +83,6 @@ body {
   margin-bottom: 20px;
 }
 
-.flag-count {
-  text-align: center;
-}
-
 .gameboard {
   --board-size: max(200px, 40vw);
   --squares: 1;
@@ -147,8 +143,13 @@ body {
   }
 }
 
-form {
+.options {
+  display: flex;
+  flex-direction: column;
   font-family: "Times New Roman", serif;
+}
+
+form {
   font-size: 1.2rem;
   display: flex;
   flex-direction: column;
@@ -176,6 +177,45 @@ form {
     display: inline-block;
     width: 60px;
   }
+
+  & > :last-child {
+    margin-bottom: 20px;
+  }
+}
+
+.flag-count {
+  text-align: center;
+}
+
+.flag-mine-toggle {
+  border: thin solid black;
+  border-radius: 3px;
+  padding: 2px;
+
+  &.mine-mode {
+    background-color: #ffc0cb;
+
+    &:hover {
+      background-color: #eeb0bb;
+    }
+
+    &:active {
+      background-color: #dda0ab;
+    }
+  }
+
+  &.flag-mode {
+    background-color: #ff0000;
+
+    &:hover {
+      background-color: #ee0000;
+    }
+
+    &:active {
+      background-color: #cc0000;
+    }
+  }
+
 }
 
 .submitBtn, .win-screen button, .lose-screen button {

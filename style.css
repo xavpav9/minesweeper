@@ -79,12 +79,13 @@ body {
 }
 
 
-.options {
-  & > *:first-child {
-    margin-bottom: 20px;
-  }
+.options > * {
+  margin-bottom: 20px;
 }
 
+.flag-count {
+  text-align: center;
+}
 
 .gameboard {
   --board-size: max(200px, 40vw);

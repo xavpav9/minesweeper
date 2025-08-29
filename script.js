@@ -5,10 +5,15 @@ const minesInput = document.querySelector("#mines");
 const winScreen = document.querySelector(".win-screen");
 const loseScreen = document.querySelector(".lose-screen");
 const levelSelect = document.querySelector("#levels");
+const flagCountOutput = document.querySelector(".flag-count span:last-child");
 let currentSize = 0;
 let mousedownOnGameBoard = false;
+let flagCount = 0;
 
 submitBtn.addEventListener("click", evt => {
+  flagCount = 0;
+  flagCountOutput.textContent = flagCount;
+
   [...gameBoard.children].forEach(child => child.remove());
 
   if ([...submitBtn.classList].includes("start")) createGrid(+sizeInput.value, +minesInput.value);
@@ -52,7 +57,14 @@ gameBoard.addEventListener("mouseup", evt => {
         checkSquare(square);
         if (checkWin()) showEndScreen("win");
       } else if (evt.button === 2 && ![...span.parentNode.classList].includes("revealed")) {
-        span.textContent = (span.textContent === "") ? "🚩" : "";
+        if (span.textContent === "") {
+          span.textContent = "🚩";
+          flagCountOutput.textContent = ++flagCount;
+
+        } else {
+          span.textContent = "";
+          flagCountOutput.textContent = --flagCount;
+        };
       };
     };
   mousedownOnGameBoard = false;
@@ -209,6 +221,9 @@ function showEndScreen(screenType = "win") {
   minesInput.setAttribute("disabled", "disabled");
   submitBtn.setAttribute("disabled", "disabled");
   levelSelect.setAttribute("disabled", "disabled");
+
+  flagCount = 0;
+  flagCountOutput.textContent = flagCount;
 
   let screen;
   if (screenType === "lose") screen = loseScreen;

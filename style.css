@@ -148,9 +148,15 @@ form {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  --input-width: 152px;
+  --input-height: 1.5rem;
 
-  input {
+  input, select {
     font-family: Roboto, sans-serif;
+    width: var(--input-width);
+    height: var(--input-height);
+    border: thin solid black;
+    border-radius: 2px;
   }
 
   & > div:last-of-type { /* submit button */
@@ -160,6 +166,10 @@ form {
   label {
     display: inline-block;
     width: 60px;
+  }
+
+  select {
+    position: relative;
   }
 }
 

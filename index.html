@@ -30,12 +30,22 @@
       <div class="options">
         <form>
           <div>
+            <label for="levels">Level: </label>
+            <select id="levels">
+              <option value="Custom">Custom</option>
+              <option value="Easy">Easy</option>
+              <option value="Medium">Hard</option>
+              <option value="Hard">Hard</option>
+              <option value="Impossible">Impossible</option>
+            </select>
+          </div>
+          <div>
             <label for="mines">Mines: </label>
-            <input id="mines" min="5" placeholder="5+" type="number"/>
+            <input disabled id="mines" min="5" placeholder="5+" type="number"/>
           </div>
           <div>
             <label for="size">Size: </label>
-            <input id="size" min="5" placeholder="5 - 40" type="number"/>
+            <input disabled id="size" min="5" placeholder="5 - 40" type="number"/>
           </div>
           <div>
             <button disabled type="button" class="submitBtn start"></button>

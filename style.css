@@ -93,7 +93,7 @@ body {
 
   width: var(--board-size);
   height: var(--board-size);
-  padding: 10px;
+  padding: calc(var(--board-size) / 100);
 
   background-color: #505050;
   border: 2px solid black;

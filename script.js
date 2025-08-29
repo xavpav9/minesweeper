@@ -45,7 +45,7 @@ gameBoard.addEventListener("mouseup", evt => {
       if (evt.button === 0 && span.textContent !== "🚩") {
         checkSquare(square);
         if (checkWin()) showEndScreen("win");
-      } else if (evt.button === 2) {
+      } else if (evt.button === 2 && ![...span.parentNode.classList].includes("revealed")) {
         span.textContent = (span.textContent === "") ? "🚩" : "";
       };
     };

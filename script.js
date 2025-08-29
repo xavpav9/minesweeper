@@ -114,6 +114,7 @@ gameBoard.addEventListener("contextmenu", evt => {
     minesInput.removeAttribute("disabled");
     submitBtn.removeAttribute("disabled");
     levelSelect.removeAttribute("disabled");
+    levelSelect.style.visibility = "visible";
     levelSelect.dispatchEvent(new Event("change"));
 
     screen.style.display = "none";
@@ -243,6 +244,7 @@ function showEndScreen(screenType = "win") {
   minesInput.setAttribute("disabled", "disabled");
   submitBtn.setAttribute("disabled", "disabled");
   levelSelect.setAttribute("disabled", "disabled");
+  levelSelect.style.visibility = "hidden";
 
   flagCount = 0;
   flagMineOutput.textContent = flagCount;

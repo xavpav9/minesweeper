@@ -160,12 +160,9 @@ form {
     font-family: Roboto, sans-serif;
     width: var(--input-width);
     height: var(--input-height);
+
     border: thin solid black;
     border-radius: 2px;
-  }
-
-  select[disabled] {
-    filter: blur(var(--bg-blur));
   }
 
   & > div:last-of-type { /* submit button */

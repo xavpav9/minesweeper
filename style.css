@@ -4,6 +4,10 @@
   line-height: 1.5;
 }
 
+:root {
+  --bg-blur: 5px;
+}
+
 html {
   font-family: "Courier", monospace;
 }
@@ -32,7 +36,7 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: transparent;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(var(--bg-blur));
   top: 0px;
   left: 0px;
 
@@ -157,6 +161,10 @@ form {
     height: var(--input-height);
     border: thin solid black;
     border-radius: 2px;
+  }
+
+  select[disabled] {
+    filter: blur(var(--bg-blur));
   }
 
   & > div:last-of-type { /* submit button */

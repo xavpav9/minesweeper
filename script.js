@@ -132,26 +132,36 @@ levelSelect.addEventListener("change", evt => {
     case "custom":
       sizeInput.removeAttribute("disabled");
       minesInput.removeAttribute("disabled");
+      evt.target.style.backgroundColor = "lightgrey";
+      evt.target.style.color = "black";
       break;
     case "easy":
       disable();
       sizeInput.value = 6;
       minesInput.value = 5;
+      evt.target.style.backgroundColor = "lightgreen";
+      evt.target.style.color = "black";
       break;
     case "medium":
       disable();
       sizeInput.value = 12;
       minesInput.value = 20;
+      evt.target.style.backgroundColor = "orange";
+      evt.target.style.color = "black";
       break;
     case "hard":
       disable();
       sizeInput.value = 18;
       minesInput.value = 50;
+      evt.target.style.backgroundColor = "red";
+      evt.target.style.color = "black";
       break;
     case "impossible":
       disable();
       sizeInput.value = 40;
       minesInput.value = 125;
+      evt.target.style.backgroundColor = "darkred";
+      evt.target.style.color = "white";
       break;
   };
   validateInputs();

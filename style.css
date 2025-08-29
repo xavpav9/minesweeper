@@ -7,6 +7,10 @@
 :root {
   --bg-blur: 5px;
 }
+  
+*:focus {
+  outline: thin solid lightblue;
+}
 
 html {
   font-family: "Courier", monospace;
@@ -218,10 +222,6 @@ form {
   border: thin solid black;
   border-radius: 3px;
   padding: 2px 4px;
-  
-  &:focus {
-    outline: thin solid lightblue;
-  }
 }
 
 .win-screen button, .lose-screen button {
